@@ -1,23 +1,8 @@
 language: node_js
 node_js:
-- '5'
+- '7'
 services:
 - 'mongodb'
-addons:
-  code_climate:
-    repo_token: "583b89a19f591462db124f7643814beb35128146993a34f631c5771c34cb899e"
-before_script:
-- npm install -g codeclimate-test-reporter
-after_script:
-- codeclimate-test-reporter < coverage/lcov.info
-deploy:
-  provider: npm
-  email: serveradmin@octoblu.com
-  api_key:
-    secure: D26ZagI8ZbKVIBaKieRo1z+IlKHu8tTchmxBDaYioPsn/0SJ5KavJqkKTzxy03CiQZvLIycFt7nzh6rlUt1Pbz/dfwhWlyzEcnEuirpas2yq0W+RmNErEiNnqCDKK62umvM00IwFQb2sULEB951LBB710w3jMDTZulwDB29hFoRPdBUiDLVTtHqhEHAllTXbPnJhmsD1jqjdapFu3vJbgvECZGQ+H4XgQ0y8UE4+kFus+Cx0FytDI/hnythffMrIGdcA9VknPLfCEp307fEjikh90Z58zGrAUR/DyIgqVxTyPKP9IK9vZIkPfOYJeufWXFpjcDChkxHq7neggvgXmMci/znAQIbaSbCecEMYAuxVRgZBnx81cRvkwgUoRxEWPfdFCGiWEaOML2rHMtMaBkvEydxiv0lj/7/vFxl00L5YmI7pbZjHBAvGbdqALIxoPsWYA9bWw4q4VOB4RF3hr99i0IAwF4d1LAVbs668Y4COgUMlbosd67ZFVZ5kI5lKLdSrjkddWtffvb2Eu9lRWT+2xrUeCN9vFCOwaLRkLtlI0wTum/K5S6NWQ1yVdwcSF2WLZsdCe0Sb+Dwtyqk/qQZphkyT1NF2/pbbZakatux0YRhmi6BTRjmlwMC1JHuqt3oIi1Wa27jG/xwjMYYzHXhaMl+ce5SmY0vZFfq37zA=
-  on:
-    tags: true
-    branches: true
 branches:
   only:
   - "/^v[0-9]/"
@@ -26,3 +11,11 @@ after_success:
 - npm run mocha:json
 - bash <(curl -s https://codecov.io/bash)
 - bash <(curl -s https://codecov.octoblu.com/bash)
+deploy:
+  provider: npm
+  email: serveradmin@octoblu.com
+  api_key:
+    secure: D26ZagI8ZbKVIBaKieRo1z+IlKHu8tTchmxBDaYioPsn/0SJ5KavJqkKTzxy03CiQZvLIycFt7nzh6rlUt1Pbz/dfwhWlyzEcnEuirpas2yq0W+RmNErEiNnqCDKK62umvM00IwFQb2sULEB951LBB710w3jMDTZulwDB29hFoRPdBUiDLVTtHqhEHAllTXbPnJhmsD1jqjdapFu3vJbgvECZGQ+H4XgQ0y8UE4+kFus+Cx0FytDI/hnythffMrIGdcA9VknPLfCEp307fEjikh90Z58zGrAUR/DyIgqVxTyPKP9IK9vZIkPfOYJeufWXFpjcDChkxHq7neggvgXmMci/znAQIbaSbCecEMYAuxVRgZBnx81cRvkwgUoRxEWPfdFCGiWEaOML2rHMtMaBkvEydxiv0lj/7/vFxl00L5YmI7pbZjHBAvGbdqALIxoPsWYA9bWw4q4VOB4RF3hr99i0IAwF4d1LAVbs668Y4COgUMlbosd67ZFVZ5kI5lKLdSrjkddWtffvb2Eu9lRWT+2xrUeCN9vFCOwaLRkLtlI0wTum/K5S6NWQ1yVdwcSF2WLZsdCe0Sb+Dwtyqk/qQZphkyT1NF2/pbbZakatux0YRhmi6BTRjmlwMC1JHuqt3oIi1Wa27jG/xwjMYYzHXhaMl+ce5SmY0vZFfq37zA=
+  on:
+    tags: true
+    branches: true

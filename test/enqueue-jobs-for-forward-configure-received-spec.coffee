@@ -28,7 +28,7 @@ describe 'EnqueueJobsForForwardConfigureReceived', ->
     client = new RedisNS 'ns', redis.createClient(@redisKey)
     @sut = new EnqueueJobsForForwardConfigureReceived {
       datastore:         @datastore
-      jobManager:        new JobManager {client: client, timeoutSeconds: 1, jobLogSampleRate: 1}
+      jobManager:        new JobManager {client, timeoutSeconds: 1, jobLogSampleRate: 1}
       uuidAliasResolver: {resolve: (uuid, callback) -> callback(null, uuid)}
     }
 
